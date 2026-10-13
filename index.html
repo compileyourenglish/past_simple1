@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past Simple in IT</title>
+<meta name="description" content="Interactive Past Simple practice for IT professionals: grammar notes and exercises 5.1–5.4.">
+
+<style>
+/* ---------- Tokens ---------- */
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --surface-2: #f3f4f3;
+  --text: #1b1f23;
+  --muted: #667078;
+  --line: #e4e6e8;
+  --accent: #0b7285;
+  --accent-soft: #e3f3f6;
+  --accent-ink: #ffffff;
+  --ok: #176b3a;
+  --ok-soft: #e5f4ea;
+  --bad: #b42318;
+  --bad-soft: #fcebea;
+  --shown: #6b5b00;
+  --shown-soft: #fbf4d6;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1214;
+    --surface: #161a1d;
+    --surface-2: #1c2125;
+    --text: #e6e8ea;
+    --muted: #98a2ab;
+    --line: #272d32;
+    --accent: #4fd1c5;
+    --accent-soft: #11292b;
+    --accent-ink: #06201e;
+    --ok: #5fd68a;
+    --ok-soft: #12261b;
+    --bad: #ff8a80;
+    --bad-soft: #2d1816;
+    --shown: #e6cf6a;
+    --shown-soft: #2a2610;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1214;
+  --surface: #161a1d;
+  --surface-2: #1c2125;
+  --text: #e6e8ea;
+  --muted: #98a2ab;
+  --line: #272d32;
+  --accent: #4fd1c5;
+  --accent-soft: #11292b;
+  --accent-ink: #06201e;
+  --ok: #5fd68a;
+  --ok-soft: #12261b;
+  --bad: #ff8a80;
+  --bad-soft: #2d1816;
+  --shown: #e6cf6a;
+  --shown-soft: #2a2610;
+  color-scheme: dark;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 0 1rem; }
+h1, h2, h3 { line-height: 1.25; margin: 0; }
+p { margin: 0 0 1rem; }
+a { color: var(--accent); }
+
+/* ---------- Top bar ---------- */
+.bar {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.bar .wrap { display: flex; align-items: center; gap: .25rem; height: 3rem; overflow-x: auto; scrollbar-width: none; }
+.bar .wrap::-webkit-scrollbar { display: none; }
+.bar a {
+  font: 500 .8125rem/1 var(--mono);
+  color: var(--muted); text-decoration: none;
+  padding: .5rem .6rem; border-radius: 6px; white-space: nowrap;
+}
+.bar a:hover { color: var(--text); background: var(--surface-2); }
+.bar .sep { width: 1px; height: 1rem; background: var(--line); margin: 0 .35rem; flex: none; }
+.bar .spacer { flex: 1; }
+.theme {
+  font: 500 .8125rem/1 var(--mono);
+  color: var(--muted); background: none; border: 1px solid var(--line);
+  border-radius: 6px; padding: .45rem .6rem; cursor: pointer; flex: none;
+}
+.theme:hover { color: var(--text); background: var(--surface-2); }
+
+/* ---------- Header ---------- */
+header.hero { padding: 3.5rem 0 2rem; }
+.eyebrow { font: 500 .8125rem/1 var(--mono); color: var(--accent); letter-spacing: .02em; margin-bottom: 1rem; }
+.eyebrow span { color: var(--muted); }
+h1 { font-size: clamp(2rem, 6vw, 2.75rem); letter-spacing: -.02em; margin-bottom: .75rem; }
+.lede { color: var(--muted); max-width: 36rem; margin: 0; }
+
+/* ---------- Sections ---------- */
+section { padding: 2rem 0; border-top: 1px solid var(--line); scroll-margin-top: 3rem; }
+.sec-title { display: flex; align-items: baseline; gap: .75rem; margin-bottom: 1.25rem; }
+.sec-title .tag {
+  font: 600 .8125rem/1 var(--mono);
+  color: var(--accent); background: var(--accent-soft);
+  padding: .35rem .5rem; border-radius: 5px; flex: none;
+}
+.sec-title h2 { font-size: 1.25rem; }
+.part-label {
+  font: 500 .75rem/1 var(--mono); color: var(--muted);
+  text-transform: uppercase; letter-spacing: .08em;
+  margin: 2.5rem 0 0; padding-top: 1rem;
+}
+
+/* ---------- Study content ---------- */
+.v { color: var(--accent); font-weight: 600; }
+.panel {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 10px; padding: 1.1rem 1.25rem; margin-bottom: 1rem;
+}
+.panel p:last-child { margin-bottom: 0; }
+.note { color: var(--muted); font-size: .9375rem; }
+ul.eg { list-style: none; margin: 0 0 1rem; padding: 0; }
+ul.eg li {
+  border-left: 2px solid var(--line);
+  padding: .15rem 0 .15rem 1rem; margin: .5rem 0;
+}
+ul.eg li:hover { border-left-color: var(--accent); }
+.wrong { color: var(--bad); text-decoration: line-through; text-decoration-thickness: 1px; }
+.irregular { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.irregular li {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .85rem 1rem;
+  font-size: .9375rem; line-height: 1.5;
+}
+.irregular .pair { display: block; font: 600 .9375rem/1.3 var(--mono); margin-bottom: .35rem; }
+.irregular .pair i { font-style: normal; color: var(--muted); padding: 0 .35rem; }
+.irregular .pair b { color: var(--accent); }
+
+.table-wrap { overflow-x: auto; margin-bottom: 1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .9375rem; }
+th, td { text-align: left; padding: .65rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font: 500 .75rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--surface-2); }
+
+/* ---------- Exercises ---------- */
+.exercise { padding-top: 2.25rem; }
+.ex-head { margin-bottom: 1.25rem; }
+.ex-head .tag { font-size: .9375rem; }
+.ex-head p { margin: .25rem 0 0; }
+.callout {
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px;
+  padding: 1rem 1.25rem; margin-bottom: 1.25rem; font-size: 1rem;
+}
+.callout .who { font: 600 .75rem/1 var(--mono); letter-spacing: .08em; color: var(--accent); display: block; margin-bottom: .5rem; }
+.wordbank { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 1.25rem; padding: 0; list-style: none; }
+.chip {
+  font: 500 .875rem/1 var(--mono); padding: .4rem .65rem;
+  border: 1px solid var(--line); border-radius: 6px; background: var(--surface);
+  transition: opacity .15s;
+}
+.chip.used { opacity: .35; text-decoration: line-through; }
+
+ol.items { list-style: none; margin: 0; padding: 0; counter-reset: item; }
+ol.items > li {
+  counter-increment: item; position: relative;
+  padding: .55rem 0 .55rem 2.25rem; line-height: 2.35;
+  border-bottom: 1px dashed var(--line);
+}
+ol.items > li:last-child { border-bottom: 0; }
+ol.items > li::before {
+  content: counter(item); position: absolute; left: 0; top: .55rem;
+  font: 500 .8125rem/2.9 var(--mono); color: var(--muted); width: 1.5rem; text-align: right;
+}
+li.given .given-text { color: var(--muted); }
+li.given .v { color: var(--accent); }
+.given-flag { font: 500 .6875rem/1 var(--mono); color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: .2rem .35rem; margin-left: .4rem; vertical-align: middle; }
+.line { display: block; }
+.line + .line { margin-top: .1rem; }
+.spk { font: 600 .75rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-right: .5rem; }
+.line.reply { color: var(--muted); font-size: .9688rem; line-height: 1.6; padding-left: 0; margin-top: .25rem; }
+.cue { font: 500 .875rem/1 var(--mono); color: var(--muted); margin-left: .25rem; }
+.also { display: block; font: 400 .8125rem/1.4 var(--mono); color: var(--shown); margin: .1rem 0 0; }
+
+/* Inputs */
+.blank { position: relative; display: inline-block; vertical-align: baseline; margin: 0 .15rem; }
+.blank input {
+  width: calc(var(--n, 8) * 1ch + 2.8rem);
+  max-width: 100%;
+  font: 500 .9375rem/1.5 var(--mono);
+  color: var(--text); background: var(--surface);
+  border: 1px solid var(--line); border-bottom: 2px solid var(--muted);
+  border-radius: 6px 6px 3px 3px;
+  padding: .2rem 1.6rem .2rem .55rem;
+  outline: none; transition: border-color .15s, background .15s;
+}
+.blank input::placeholder { color: transparent; }
+.blank input:focus { border-color: var(--accent); border-bottom-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.blank::after {
+  position: absolute; right: .5rem; top: 50%; transform: translateY(-50%);
+  font: 700 .875rem/1 var(--mono); pointer-events: none;
+}
+.blank.ok input { border-color: var(--ok); background: var(--ok-soft); }
+.blank.ok::after { content: "\2713"; color: var(--ok); }
+.blank.bad input { border-color: var(--bad); background: var(--bad-soft); }
+.blank.bad::after { content: "\2717"; color: var(--bad); }
+.blank.shown input { border-color: var(--shown); background: var(--shown-soft); color: var(--text); }
+
+/* Actions */
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+.btn {
+  font: 500 .875rem/1 var(--sans);
+  padding: .65rem 1rem; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text);
+  transition: background .15s, border-color .15s, opacity .15s;
+}
+.btn:hover:not(:disabled) { border-color: var(--muted); background: var(--surface-2); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.btn.primary:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); filter: brightness(1.08); }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+.result { font: 500 .875rem/1.3 var(--mono); color: var(--muted); margin-left: auto; min-height: 1.2em; }
+.result.good { color: var(--ok); }
+.result.mixed { color: var(--bad); }
+.result.info { color: var(--shown); }
+@media (max-width: 480px) { .result { margin-left: 0; width: 100%; } }
+
+footer { padding: 2.5rem 0 4rem; border-top: 1px solid var(--line); color: var(--muted); font: 400 .8125rem/1.6 var(--mono); }
+
+@media print {
+  .bar, .actions, .theme { display: none; }
+  body { background: #fff; color: #000; }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="bar" aria-label="Sections">
+  <div class="wrap">
+    <a href="#study">Study</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="#ex-5-1">5.1</a>
+    <a href="#ex-5-2">5.2</a>
+    <a href="#ex-5-3">5.3</a>
+    <a href="#ex-5-4">5.4</a>
+    <span class="spacer"></span>
+    <button class="theme" id="themeBtn" type="button" aria-label="Toggle colour theme">theme</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">unit_05 <span>// grammar · student version</span></div>
+    <h1>Past Simple in IT</h1>
+    <p class="lede">Read the notes, then practise. Type your answers in the exercises and use the buttons under each one to check your work.</p>
+  </header>
+
+  <!-- ===================== STUDY ===================== -->
+  <section id="study">
+
+    <div class="sec-title"><span class="tag">A</span><h2>Study this example</h2></div>
+    <div class="panel">
+      <p>Maya Chen is a software engineer. Last year, she <span class="v">joined</span> a product team at a fintech company. She <span class="v">learned</span> a new programming language, <span class="v">fixed</span> several critical bugs and <span class="v">wrote</span> automated tests. She <span class="v">was</span> responsible for the payment feature, and she <span class="v">helped</span> the team release it on time.</p>
+    </div>
+    <p class="note"><span class="v">joined</span> / <span class="v">learned</span> / <span class="v">fixed</span> / <span class="v">wrote</span> / <span class="v">was</span> / <span class="v">helped</span> are all Past Simple forms.</p>
+
+    <p class="part-label">&nbsp;</p>
+    <div class="sec-title"><span class="tag">B</span><h2>Regular and irregular verbs</h2></div>
+    <p>Very often, the Past Simple ends in <b>-ed</b> (regular verbs):</p>
+    <ul class="eg">
+      <li>I work on the mobile app now. Before that, I <span class="v">worked</span> on the company website.</li>
+      <li>The team <span class="v">tested</span> the new feature, but they <span class="v">postponed</span> the release.</li>
+      <li>Our developer <span class="v">fixed</span> the login bug yesterday.</li>
+      <li>Nina <span class="v">documented</span> the API because the team <span class="v">needed</span> clear instructions.</li>
+    </ul>
+    <p class="note">For spelling rules (for example, fixed, tested, deployed), follow the usual -ed spelling patterns.</p>
+
+    <p>But many verbs are <b>irregular</b>. The Past Simple does not end in -ed. For example:</p>
+    <ul class="irregular">
+      <li><span class="pair">write<i>→</i><b>wrote</b></span>Our team <span class="v">wrote</span> automated tests for the new feature.</li>
+      <li><span class="pair">see<i>→</i><b>saw</b></span>I <span class="v">saw</span> an error message after the deployment.</li>
+      <li><span class="pair">go<i>→</i><b>went</b></span>We <span class="v">went</span> through the bug reports this morning.</li>
+      <li><span class="pair">build<i>→</i><b>built</b></span>They <span class="v">built</span> a prototype in two days.</li>
+    </ul>
+    <p class="note">For a list of irregular verbs, see an irregular-verbs reference list.</p>
+
+    <p class="part-label">&nbsp;</p>
+    <div class="sec-title"><span class="tag">C</span><h2>Questions and negative sentences</h2></div>
+    <p>In questions and negative sentences, use <b>did / didn't</b> + the infinitive (base form):</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Positive</th><th>Question</th><th>Negative</th></tr></thead>
+        <tbody>
+          <tr><td>I fixed the bug.</td><td>Did you <span class="v">fix</span> the bug?</td><td>I didn't <span class="v">fix</span> the bug.</td></tr>
+          <tr><td>She saw the error.</td><td>Did she <span class="v">see</span> the error?</td><td>She didn't <span class="v">see</span> the error.</td></tr>
+          <tr><td>They deployed the update.</td><td>Did they <span class="v">deploy</span> the update?</td><td>They didn't <span class="v">deploy</span> the update.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="eg">
+      <li>The team tested the update. Did the team <span class="v">test</span> the update?</li>
+      <li>How many bugs did they <span class="v">find</span> during testing?</li>
+      <li>I didn't <span class="v">change</span> the code because I didn't <span class="v">understand</span> the requirement.</li>
+      <li>"Did you deploy the fix?" "No, I didn't."</li>
+    </ul>
+    <p>Sometimes <b>do</b> is the main verb (<i>did you do?</i>, <i>I didn't do</i>):</p>
+    <ul class="eg">
+      <li>What did you <span class="v">do</span> after the stand-up meeting? <span class="note">(not: <span class="wrong">What did you after the stand-up meeting?</span>)</span></li>
+      <li>I didn't <span class="v">do</span> anything because the build was still running. <span class="note">(not: <span class="wrong">I didn't anything</span>)</span></li>
+    </ul>
+
+    <p class="part-label">&nbsp;</p>
+    <div class="sec-title"><span class="tag">D</span><h2>The past of be (am / is / are)</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Subject</th><th>Positive / Negative</th><th>Question</th></tr></thead>
+        <tbody>
+          <tr><td>I / he / she / it</td><td><span class="v">was</span> / <span class="v">wasn't</span></td><td><span class="v">Was</span> I / he / she / it ...?</td></tr>
+          <tr><td>we / you / they</td><td><span class="v">were</span> / <span class="v">weren't</span></td><td><span class="v">Were</span> we / you / they ...?</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="eg">
+      <li>I <span class="v">was</span> frustrated because the test environment <span class="v">was</span> down.</li>
+      <li><span class="v">Were</span> the requirements clear when you started the task?</li>
+      <li>They <span class="v">weren't</span> able to join the meeting because they <span class="v">were</span> busy fixing a production issue.</li>
+      <li>I <span class="v">wasn't</span> available, so I didn't answer the message.</li>
+      <li>Did you finish the ticket yesterday, or <span class="v">were</span> you too busy?</li>
+    </ul>
+  </section>
+
+  <!-- ===================== 5.1 ===================== -->
+  <section class="exercise" id="ex-5-1" data-ex="5.1">
+    <div class="ex-head">
+      <div class="sec-title"><span class="tag">5.1</span><h2>Alex's working day</h2></div>
+      <p>Read what Alex says about a typical working day.</p>
+    </div>
+    <div class="callout">
+      <span class="who">ALEX</span>
+      I usually check my messages at 9 o'clock and review the team board. I join the daily stand-up at 9.30. I usually fix bugs in the morning. I have lunch at 1 o'clock. I finish work at 5.30. I'm often tired when I log off. I usually review my notes in the evening. I don't usually work late. I shut down my laptop at about 10 o'clock, and I usually sleep well.
+    </div>
+    <p>Yesterday was a typical working day for Alex. Write what he did or didn't do yesterday.</p>
+
+    <ol class="items">
+      <li class="given"><span class="given-text">He <span class="v">checked</span> his messages at 9 o'clock.</span><span class="given-flag">example</span></li>
+      <li>He <input data-a="reviewed"> the team board.</li>
+      <li>He <input data-a="joined the daily stand-up" data-re="^joined the( daily)? (stand-up( meeting)?|meeting)$"> at 9.30.</li>
+      <li>He <input data-a="fixed"> bugs in the morning.</li>
+      <li>He <input data-a="had"> lunch at 1 o'clock.</li>
+      <li>He <input data-a="finished"> work at 5.30.</li>
+      <li>He <input data-a="was"> tired when he logged off.</li>
+      <li>He <input data-a="reviewed"> his notes yesterday evening.</li>
+      <li>He <input data-a="didn't work"> late yesterday evening.</li>
+      <li>He <input data-a="shut down"> his laptop at about 10 o'clock.</li>
+      <li>He <input data-a="slept"> well last night.</li>
+    </ol>
+    <p class="note" style="margin-top:1rem">Close variants that keep the meaning are accepted. If you think your answer works but it is marked wrong, compare it with Show Answers.</p>
+
+    <div class="actions">
+      <button class="btn primary" type="button" data-action="check">Check</button>
+      <button class="btn" type="button" data-action="show">Show Answers</button>
+      <button class="btn" type="button" data-action="reset">Try again</button>
+      <span class="result" role="status" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <!-- ===================== 5.2 ===================== -->
+  <section class="exercise" id="ex-5-2" data-ex="5.2">
+    <div class="ex-head">
+      <div class="sec-title"><span class="tag">5.2</span><h2>Complete the sentences</h2></div>
+      <p>Complete the sentences using the following verbs in the correct form:</p>
+    </div>
+    <ul class="wordbank" aria-label="Verbs to use">
+      <li class="chip" data-w="buy">buy</li>
+      <li class="chip" data-w="catch">catch</li>
+      <li class="chip" data-w="cost">cost</li>
+      <li class="chip" data-w="fall">fall</li>
+      <li class="chip" data-w="hurt">hurt</li>
+      <li class="chip" data-w="sell">sell</li>
+      <li class="chip" data-w="spend">spend</li>
+      <li class="chip" data-w="teach">teach</li>
+      <li class="chip" data-w="throw">throw</li>
+      <li class="chip" data-w="write">write</li>
+    </ul>
+
+    <ol class="items">
+      <li class="given"><span class="given-text">The developer <span class="v">wrote</span> a script to automate the report.</span><span class="given-flag">example</span></li>
+      <li>"How did you learn to use Git?" "My colleague <input data-a="taught"> me."</li>
+      <li>We replaced the old server, so we <input data-a="sold"> it.</li>
+      <li>Mark <input data-a="fell"> over a cable this morning and <input data-a="hurt"> his wrist.</li>
+      <li>Priya <input data-a="threw"> the task to Leo, who <input data-a="caught"> it before the deadline.</li>
+      <li>The team <input data-a="spent"> a lot of time yesterday. They <input data-a="bought"> a monitoring tool which <input data-a="cost"> £100.</li>
+    </ol>
+
+    <div class="actions">
+      <button class="btn primary" type="button" data-action="check">Check</button>
+      <button class="btn" type="button" data-action="show">Show Answers</button>
+      <button class="btn" type="button" data-action="reset">Try again</button>
+      <span class="result" role="status" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <!-- ===================== 5.3 ===================== -->
+  <section class="exercise" id="ex-5-3" data-ex="5.3">
+    <div class="ex-head">
+      <div class="sec-title"><span class="tag">5.3</span><h2>A work trip</h2></div>
+      <p>You ask Jordan about a recent work trip. Write your questions.</p>
+    </div>
+
+    <ol class="items">
+      <li class="given">
+        <span class="line given-text"><span class="spk">You</span><span class="v">Where did you go?</span><span class="given-flag">example</span></span>
+        <span class="line reply"><span class="spk">Jordan</span>To Berlin. I attended a software conference.</span>
+      </li>
+      <li>
+        <span class="line"><span class="spk">You</span>How <input data-a="did you travel" data-before="how" data-re="^did you (travel|get there|get to berlin|get to the conference|go there|travel there)$" data-also="did you get there">? By plane?</span>
+        <span class="line reply"><span class="spk">Jordan</span>Yes, I flew from Kyiv.</span>
+      </li>
+      <li>
+        <span class="line"><span class="spk">You</span>It was a busy conference. How long <input data-a="did you stay" data-before="how long" data-re="^(did you stay( there)?|did it last|did the conference last|was the conference|was it|were you there|were you in berlin)$">?</span>
+        <span class="line reply"><span class="spk">Jordan</span>Three days. I attended talks and met other developers.</span>
+      </li>
+      <li>
+        <span class="line"><span class="spk">You</span>Where <input data-a="did you stay" data-before="where" data-re="^did you (stay( there)?|sleep)$">? At the conference venue?</span>
+        <span class="line reply"><span class="spk">Jordan</span>No, I stayed at a hotel near the office.</span>
+      </li>
+      <li>
+        <span class="line"><span class="spk">You</span><input data-a="Was it" data-after="useful" data-re="^was (it|the conference|the trip|the event)$"> useful?</span>
+        <span class="line reply"><span class="spk">Jordan</span>Yes, especially the talks about cloud security.</span>
+      </li>
+      <li>
+        <span class="line"><span class="spk">You</span><input data-a="Did you see" data-after="the company's new product demo" data-re="^did you (see|watch|attend|catch|visit|go to)( the( company's)?( new)?( product)? demo)?$"> the company's new product demo?</span>
+        <span class="line reply"><span class="spk">Jordan</span>Of course. It was impressive.</span>
+      </li>
+    </ol>
+    <p class="note" style="margin-top:1rem">Close variants that keep the meaning are accepted. If you think your answer works but it is marked wrong, compare it with Show Answers.</p>
+
+    <div class="actions">
+      <button class="btn primary" type="button" data-action="check">Check</button>
+      <button class="btn" type="button" data-action="show">Show Answers</button>
+      <button class="btn" type="button" data-action="reset">Try again</button>
+      <span class="result" role="status" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <!-- ===================== 5.4 ===================== -->
+  <section class="exercise" id="ex-5-4" data-ex="5.4">
+    <div class="ex-head">
+      <div class="sec-title"><span class="tag">5.4</span><h2>Positive or negative?</h2></div>
+      <p>Complete the sentences. Put the verb into the correct form, positive or negative.</p>
+    </div>
+
+    <ol class="items">
+      <li>The bug was easy to reproduce, so I <input data-a="found"> <span class="cue">(find)</span> the cause quickly.</li>
+      <li>The demo wasn't ready. We <input data-a="didn't show"> <span class="cue">(show)</span> it to the client.</li>
+      <li>I knew the developer was in a meeting, so I <input data-a="didn't disturb"> <span class="cue">(disturb)</span> her.</li>
+      <li>The team was exhausted, so we <input data-a="finished"> <span class="cue">(finish)</span> the deployment early.</li>
+      <li>The logs were difficult to read. They <input data-a="weren't"> <span class="cue">(be)</span> very clear.</li>
+      <li>The test environment was unstable, so the automated tests <input data-a="didn't run"> <span class="cue">(run)</span> well.</li>
+      <li>The tool was free, so it <input data-a="didn't cost"> <span class="cue">(cost)</span> the team anything.</li>
+      <li>The server was overloaded, and the response time <input data-a="rose"> <span class="cue">(rise)</span>.</li>
+      <li>I was busy with a production issue, so I <input data-a="didn't have"> <span class="cue">(have)</span> time to review the pull request.</li>
+      <li>The instructions were confusing. The requirements <input data-a="weren't"> <span class="cue">(be)</span> very clear.</li>
+    </ol>
+
+    <div class="actions">
+      <button class="btn primary" type="button" data-action="check">Check</button>
+      <button class="btn" type="button" data-action="show">Show Answers</button>
+      <button class="btn" type="button" data-action="reset">Try again</button>
+      <span class="result" role="status" aria-live="polite"></span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">Past Simple in IT · Unit 5 · Exercises 5.1–5.4</div>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ---------- Theme toggle (system by default, remembered if storage works) ---------- */
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeBtn");
+  const store = {
+    get() { try { return localStorage.getItem("theme"); } catch (e) { return null; } },
+    set(v) { try { localStorage.setItem("theme", v); } catch (e) { /* storage unavailable */ } }
+  };
+  const systemDark = () => window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+  const currentTheme = () => root.dataset.theme || (systemDark() ? "dark" : "light");
+  const paintThemeBtn = () => { themeBtn.textContent = currentTheme() === "dark" ? "light" : "dark"; };
+  const saved = store.get();
+  if (saved === "light" || saved === "dark") root.dataset.theme = saved;
+  paintThemeBtn();
+  themeBtn.addEventListener("click", () => {
+    const next = currentTheme() === "dark" ? "light" : "dark";
+    root.dataset.theme = next; store.set(next); paintThemeBtn();
+  });
+
+  /* ---------- Answer matching ---------- */
+  const norm = (s) => String(s || "")
+    .toLowerCase()
+    .replace(/[‘’′`]/g, "'")
+    .replace(/\s+/g, " ")
+    .replace(/\b(did|was|were) not\b/g, "$1n't")
+    .replace(/stand[ -]?up/g, "stand-up")
+    .replace(/^[\s.,!?;:]+|[\s.,!?;:]+$/g, "");
+
+  const stripContext = (v, inp) => {
+    const before = norm(inp.dataset.before), after = norm(inp.dataset.after);
+    if (before && v.startsWith(before + " ")) v = v.slice(before.length + 1);
+    if (after && v.endsWith(" " + after)) v = v.slice(0, -(after.length + 1));
+    return v;
+  };
+
+  const isCorrect = (inp) => {
+    const v = stripContext(norm(inp.value), inp);
+    if (!v) return false;
+    if (v === norm(inp.dataset.a)) return true;
+    if (inp.dataset.re && new RegExp(inp.dataset.re).test(v)) return true;
+    return false;
+  };
+
+  /* ---------- Setup ---------- */
+  document.querySelectorAll(".exercise").forEach((ex) => {
+    const exId = ex.dataset.ex;
+    const inputs = [...ex.querySelectorAll("input[data-a]")];
+    const result = ex.querySelector(".result");
+    const checkBtn = ex.querySelector('[data-action="check"]');
+    const chips = [...ex.querySelectorAll(".chip")];
+
+    // Wrap inputs, size them, label them
+    inputs.forEach((inp) => {
+      const wrap = document.createElement("span");
+      wrap.className = "blank";
+      inp.parentNode.insertBefore(wrap, inp);
+      wrap.appendChild(inp);
+      const len = Math.max(inp.dataset.a.length, 6);
+      inp.style.setProperty("--n", len + 2);
+      inp.type = "text";
+      inp.autocomplete = "off";
+      inp.autocapitalize = "off";
+      inp.spellcheck = false;
+      const li = inp.closest("li");
+      const n = li ? [...li.parentNode.children].indexOf(li) + 1 : "";
+      inp.setAttribute("aria-label", `Exercise ${exId}, item ${n}`);
+    });
+
+    const setState = (inp, state) => {
+      const wrap = inp.parentNode;
+      wrap.classList.remove("ok", "bad", "shown");
+      if (state) wrap.classList.add(state);
+    };
+    const say = (text, cls) => { result.textContent = text; result.className = "result" + (cls ? " " + cls : ""); };
+    const clearNotes = () => ex.querySelectorAll(".also").forEach((n) => n.remove());
+
+    const syncChips = () => {
+      if (!chips.length) return;
+      const typed = new Set(inputs.map((i) => norm(i.value)));
+      chips.forEach((c) => {
+        const forms = (c.dataset.forms || "").split(",");
+        c.classList.toggle("used", forms.some((f) => typed.has(f)));
+      });
+    };
+    // word bank: map each base verb to its past form from the answers
+    const pastOf = { buy: "bought", catch: "caught", cost: "cost", fall: "fell", hurt: "hurt", sell: "sold", spend: "spent", teach: "taught", throw: "threw", write: "wrote" };
+    chips.forEach((c) => { c.dataset.forms = pastOf[c.dataset.w] || c.dataset.w; });
+
+    // Editing a field clears old feedback
+    inputs.forEach((inp, idx) => {
+      inp.addEventListener("input", () => {
+        setState(inp, null);
+        if (ex.dataset.state === "checked") { ex.dataset.state = ""; say(""); }
+        syncChips();
+      });
+      inp.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        e.preventDefault();
+        const next = inputs[idx + 1];
+        if (next && !next.readOnly) next.focus(); else if (!checkBtn.disabled) check();
+      });
+    });
+
+    /* ---------- Actions ---------- */
+    function check() {
+      let ok = 0;
+      inputs.forEach((inp) => {
+        const good = isCorrect(inp);
+        setState(inp, good ? "ok" : "bad");
+        if (good) ok++;
+      });
+      ex.dataset.state = "checked";
+      const all = ok === inputs.length;
+      say(all ? `${ok} / ${inputs.length} · All correct` : `${ok} / ${inputs.length} correct`, all ? "good" : "mixed");
+    }
+
+    function show() {
+      clearNotes();
+      inputs.forEach((inp) => {
+        inp.value = inp.dataset.a;
+        inp.readOnly = true;
+        setState(inp, "shown");
+        if (inp.dataset.also) {
+          const note = document.createElement("span");
+          note.className = "also";
+          note.textContent = "also: " + inp.dataset.also;
+          inp.closest("li").appendChild(note);
+        }
+      });
+      ex.dataset.state = "shown";
+      checkBtn.disabled = true;
+      say("Answers shown", "info");
+      syncChips();
+    }
+
+    function reset() {
+      clearNotes();
+      inputs.forEach((inp) => { inp.value = ""; inp.readOnly = false; setState(inp, null); });
+      ex.dataset.state = "";
+      checkBtn.disabled = false;
+      say("");
+      syncChips();
+      if (inputs[0]) inputs[0].focus({ preventScroll: true });
+    }
+
+    ex.querySelector('[data-action="check"]').addEventListener("click", check);
+    ex.querySelector('[data-action="show"]').addEventListener("click", show);
+    ex.querySelector('[data-action="reset"]').addEventListener("click", reset);
+  });
+})();
+</script>
+</body>
+</html>
